@@ -1,6 +1,6 @@
 <template>
   <div class="thanks">
-    <h1 class="display-1">¡Gracias!</h1>
+    <h2 class="display-2">¡Gracias!</h2>
     <p>Si tienes curiosidad por conocer "los resultados" de esta encuesta, no te pierdas nuestra
     charla el 1 de junio a las 18h, en la Térmica #opensotuhcode</p>
 
@@ -16,30 +16,52 @@
 </template>
 
 <script>
-import ua from 'universal-analytics';
-
+/* global gtag */
 export default {
   name: 'thanks',
 
   props: {
     survey: Object,
+    huha: Object,
   },
 
   created() {
-    const visitor = ua('UA-117667704-1');
-    visitor.event('Age', this.survey.age).send();
-    visitor.event('Gender', this.survey.gender).send();
-    visitor.event('City', this.survey.city).send();
-    visitor.event('Position', this.survey.position).send();
-    visitor.event('Experience', this.survey.experience).send();
-    visitor.event('Studies', this.survey.studies).send();
-    visitor.event('Salary', this.survey.salary).send();
-    visitor.event('Languages', this.survey.languages.join(', ')).send();
-    visitor.event('Frameworks', this.survey.frameworks.join(', ')).send();
-    visitor.event('DBs', this.survey.dbs.join(', ')).send();
-    visitor.event('JS Library name', this.survey.jsLibraries.join(', ')).send();
-  },
+    gtag('event', 'Age', {
+      event_category: this.survey.age,
+    });
+    gtag('event', 'Gender', {
+      event_category: this.survey.gender,
+    });
+    gtag('event', 'City', {
+      event_category: this.survey.city,
+    });
+    gtag('event', 'Position', {
+      event_category: this.survey.position,
+    });
+    gtag('event', 'Experience', {
+      event_category: this.survey.experience,
+    });
+    gtag('event', 'Studies', {
+      event_category: this.survey.studies,
+    });
+    gtag('event', 'Salary', {
+      event_category: this.survey.salary,
+    });
+    gtag('event', 'Languages', {
+      event_category: this.survey.languages.join(', '),
+    });
+    gtag('event', 'Frameworks', {
+      event_category: this.survey.frameworks.join(', '),
+    });
+    gtag('event', 'DBs', {
+      event_category: this.survey.dbs.join(', '),
+    });
+    gtag('event', 'JS Library name', {
+      event_category: this.survey.jsLibraries.join(', '),
+    });
 
+    this.huha.getTask('Survey').complete();
+  },
 };
 </script>
 

@@ -25,6 +25,10 @@
 <script>
 export default {
   name: 'start',
+
+  props: {
+    huha: Object,
+  },
 };
 </script>
 

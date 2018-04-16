@@ -7,7 +7,7 @@
       :skip="true"
       :back="true"
       :error="error"
-      @skip="$emit('next-step')"
+      @skip="skip"
       @prev-step="$emit('prev-step')"
       @next-step="next">
   </Step>
@@ -130,6 +130,7 @@ export default {
 
   props: {
     survey: Object,
+    huha: Object,
   },
 
   data() {
@@ -141,9 +142,15 @@ export default {
   watch: {
     survey: {
       handler() {
+        this.huha.getTask('Survey').addInteraction();
+        this.huha.getTask('Step2').addInteraction();
         this.error = false;
       },
       deep: true,
+    },
+    error() {
+      this.huha.getTask('Survey').addError();
+      this.huha.getTask('Step2').addError();
     },
   },
 
@@ -182,13 +189,25 @@ export default {
 
   methods: {
     next() {
+      this.huha.getTask('Survey').addInteraction();
+      this.huha.getTask('Step2').addInteraction();
       if (this.valid) {
         this.error = false;
+        this.huha.getTask('Step2').complete();
         this.$emit('next-step');
       } else {
         this.error = true;
       }
     },
+
+    skip() {
+      this.huha.getTask('Step2').abandon();
+      this.$emit('next-step');
+    },
+  },
+
+  created() {
+    this.huha.createTask('Step2');
   },
 };
 </script>

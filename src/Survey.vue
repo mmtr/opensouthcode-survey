@@ -8,28 +8,33 @@
           </div>
           <Start
               v-if="step === 0"
+              :huha="huha"
               @next-step="goToNextStep"
           />
           <Step1
               v-if="step === 1"
               :survey="survey"
+              :huha="huha"
               @next-step="goToNextStep"
           />
           <Step2
               v-if="step === 2"
               :survey="survey"
+              :huha="huha"
               @next-step="goToNextStep"
               @prev-step="goToPrevStep"
           />
           <Step3
               v-if="step === 3"
               :survey="survey"
+              :huha="huha"
               @next-step="goToNextStep"
               @prev-step="goToPrevStep"
           />
           <Thanks
               v-if="step === 4"
               :survey="survey"
+              :huha="huha"
           />
         </div>
       </div>
@@ -38,6 +43,8 @@
 </template>
 
 <script>
+import Huha from '@ebury/huha';
+
 import Start from './components/Start.vue';
 import Step1 from './components/Step1.vue';
 import Step2 from './components/Step2.vue';
@@ -70,6 +77,7 @@ export default {
         dbs: [],
         jsLibraries: [],
       },
+      huha: null,
     };
   },
 
@@ -81,6 +89,10 @@ export default {
     goToPrevStep() {
       this.step -= 1;
     },
+  },
+
+  created() {
+    this.huha = new Huha();
   },
 };
 </script>

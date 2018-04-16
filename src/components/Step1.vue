@@ -55,6 +55,7 @@ export default {
 
   props: {
     survey: Object,
+    huha: Object,
   },
 
   data() {
@@ -66,9 +67,15 @@ export default {
   watch: {
     survey: {
       handler() {
+        this.huha.getTask('Survey').addInteraction();
+        this.huha.getTask('Step1').addInteraction();
         this.error = false;
       },
       deep: true,
+    },
+    error() {
+      this.huha.getTask('Survey').addError();
+      this.huha.getTask('Step1').addError();
     },
   },
 
@@ -100,13 +107,21 @@ export default {
 
   methods: {
     next() {
+      this.huha.getTask('Survey').addInteraction();
+      this.huha.getTask('Step1').addInteraction();
       if (this.valid) {
         this.error = false;
+        this.huha.getTask('Step1').complete();
         this.$emit('next-step');
       } else {
         this.error = true;
       }
     },
+  },
+
+  created() {
+    this.huha.createTask('Survey');
+    this.huha.createTask('Step1');
   },
 };
 </script>

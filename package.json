@@ -10,8 +10,8 @@
     "deploy": "gh-pages -d dist -m \"Updating live survey\""
   },
   "dependencies": {
+    "@ebury/huha": "github:Ebury/huha",
     "bootstrap": "^4.1.0",
-    "universal-analytics": "^0.4.16",
     "vue": "^2.5.13"
   },
   "devDependencies": {
