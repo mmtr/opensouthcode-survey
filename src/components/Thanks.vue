@@ -16,8 +16,30 @@
 </template>
 
 <script>
+import ua from 'universal-analytics';
+
 export default {
   name: 'thanks',
+
+  props: {
+    survey: Object,
+  },
+
+  created() {
+    const visitor = ua('UA-117667704-1');
+    visitor.event('Age', this.survey.age).send();
+    visitor.event('Gender', this.survey.gender).send();
+    visitor.event('City', this.survey.city).send();
+    visitor.event('Position', this.survey.position).send();
+    visitor.event('Experience', this.survey.experience).send();
+    visitor.event('Studies', this.survey.studies).send();
+    visitor.event('Salary', this.survey.salary).send();
+    visitor.event('Languages', this.survey.languages.join(', ')).send();
+    visitor.event('Frameworks', this.survey.frameworks.join(', ')).send();
+    visitor.event('DBs', this.survey.dbs.join(', ')).send();
+    visitor.event('JS Library name', this.survey.jsLibraries.join(', ')).send();
+  },
+
 };
 </script>
 

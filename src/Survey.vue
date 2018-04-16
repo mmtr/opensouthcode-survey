@@ -29,6 +29,7 @@
           />
           <Thanks
               v-if="step === 4"
+              :survey="survey"
           />
         </div>
       </div>

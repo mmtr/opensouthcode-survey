@@ -7,8 +7,9 @@
       :survey="survey"
       :back="true"
       :send="true"
+      :error="error"
       @prev-step="$emit('prev-step')"
-      @next-step="$emit('next-step')">
+      @next-step="next">
   </Step>
 </template>
 
@@ -182,6 +183,21 @@ export default {
     survey: Object,
   },
 
+  data() {
+    return {
+      error: false,
+    };
+  },
+
+  watch: {
+    survey: {
+      handler() {
+        this.error = false;
+      },
+      deep: true,
+    },
+  },
+
   computed: {
     form() {
       return [
@@ -196,7 +212,7 @@ export default {
           type: 'checkbox',
           values: frameworks,
         }, {
-          name: 'dbas',
+          name: 'dbs',
           label: 'Bases de datos',
           type: 'checkbox',
           values: dbs,
@@ -207,6 +223,22 @@ export default {
           values: jsLibraries,
         },
       ];
+    },
+
+    valid() {
+      return this.survey.languages.length > 0 && this.survey.frameworks.length > 0 &&
+        this.survey.dbs.length > 0 && this.survey.jsLibraries.length > 0;
+    },
+  },
+
+  methods: {
+    next() {
+      if (this.valid) {
+        this.error = false;
+        this.$emit('next-step');
+      } else {
+        this.error = true;
+      }
     },
   },
 };

@@ -6,8 +6,10 @@
       :survey="survey"
       :skip="true"
       :back="true"
+      :error="error"
+      @skip="$emit('next-step')"
       @prev-step="$emit('prev-step')"
-      @next-step="$emit('next-step')">
+      @next-step="next">
   </Step>
 </template>
 
@@ -130,6 +132,21 @@ export default {
     survey: Object,
   },
 
+  data() {
+    return {
+      error: false,
+    };
+  },
+
+  watch: {
+    survey: {
+      handler() {
+        this.error = false;
+      },
+      deep: true,
+    },
+  },
+
   computed: {
     form() {
       return [
@@ -155,6 +172,22 @@ export default {
           values: salaries,
         },
       ];
+    },
+
+    valid() {
+      return this.survey.position !== null && this.survey.experience !== null &&
+        this.survey.studies !== null && this.survey.salary !== null;
+    },
+  },
+
+  methods: {
+    next() {
+      if (this.valid) {
+        this.error = false;
+        this.$emit('next-step');
+      } else {
+        this.error = true;
+      }
     },
   },
 };

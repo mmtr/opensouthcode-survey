@@ -4,7 +4,8 @@
       description="Sólo algunos datos, los que mejor te describan 👽"
       :form="form"
       :survey="survey"
-      @next-step="$emit('next-step')">
+      :error="error"
+      @next-step="next">
   </Step>
 </template>
 
@@ -56,6 +57,21 @@ export default {
     survey: Object,
   },
 
+  data() {
+    return {
+      error: false,
+    };
+  },
+
+  watch: {
+    survey: {
+      handler() {
+        this.error = false;
+      },
+      deep: true,
+    },
+  },
+
   computed: {
     form() {
       return [
@@ -75,6 +91,21 @@ export default {
           type: 'text',
         },
       ];
+    },
+
+    valid() {
+      return this.survey.age !== null && this.survey.gender !== null && this.survey.city !== null;
+    },
+  },
+
+  methods: {
+    next() {
+      if (this.valid) {
+        this.error = false;
+        this.$emit('next-step');
+      } else {
+        this.error = true;
+      }
     },
   },
 };

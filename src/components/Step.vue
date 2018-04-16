@@ -3,6 +3,13 @@
     <h2 class="step__title">{{ title }}</h2>
     <p class="step__description" v-html="description"></p>
 
+    <div class="alert alert-danger" v-if="error">
+      Todos los campos son obligatorios.
+      <p v-if="skip">
+        Si no quieres rellenarlos, pulsa en "Saltar".
+      </p>
+    </div>
+
     <div class="form-group step__form" :class="`step__form--${field.type}`"
          v-for="field in form" :key="field.name">
       <template v-if="field.type === 'radio'">
@@ -37,10 +44,12 @@
       </template>
     </div>
 
-    <button type="button" v-if="skip" class="btn btn-link btn-block"
-            @click="$emit('next-step')">
-      Saltar
-    </button>
+    <div class="text-center" v-if="skip">
+      <button type="button" class="btn btn-link"
+              @click="$emit('skip')">
+        Saltar
+      </button>
+    </div>
 
     <template v-if="back">
       <div class="row">
@@ -74,12 +83,23 @@ export default {
 
   props: {
     survey: Object,
+    error: Boolean,
     title: String,
     description: String,
     form: Array,
     skip: Boolean,
     back: Boolean,
     send: Boolean,
+  },
+
+  watch: {
+    error() {
+      window.scrollTo(0, 0);
+    },
+  },
+
+  mounted() {
+    window.scrollTo(0, 0);
   },
 };
 </script>
