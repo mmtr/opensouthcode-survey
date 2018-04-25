@@ -26,40 +26,69 @@ export default {
   },
 
   created() {
-    gtag('event', 'Age', {
-      event_category: this.survey.age,
+    gtag('event', 'Survey', {
+      event_category: 'Step 1',
+      event_label: 'Age',
+      value: this.survey.age,
     });
-    gtag('event', 'Gender', {
-      event_category: this.survey.gender,
+    gtag('event', 'Survey', {
+      event_category: 'Step 1',
+      event_label: 'Gender',
+      value: this.survey.gender,
     });
-    gtag('event', 'City', {
-      event_category: this.survey.city,
+    gtag('event', 'Survey', {
+      event_category: 'Step 1',
+      event_label: 'City',
+      value: this.survey.city,
     });
-    gtag('event', 'Position', {
-      event_category: this.survey.position,
+    gtag('event', 'Survey', {
+      event_category: 'Step 2',
+      event_label: 'Position',
+      value: this.survey.position,
     });
-    gtag('event', 'Experience', {
-      event_category: this.survey.experience,
+    gtag('event', 'Survey', {
+      event_category: 'Step 2',
+      event_label: 'Experience',
+      value: this.survey.experience,
     });
-    gtag('event', 'Studies', {
-      event_category: this.survey.studies,
+    gtag('event', 'Survey', {
+      event_category: 'Step 2',
+      event_label: 'Studies',
+      value: this.survey.studies,
     });
-    gtag('event', 'Salary', {
-      event_category: this.survey.salary,
+    gtag('event', 'Survey', {
+      event_category: 'Step 2',
+      event_label: 'Salary',
+      value: this.survey.salary,
     });
-    gtag('event', 'Languages', {
-      event_category: this.survey.languages.join(', '),
+    this.survey.languages.forEach((language) => {
+      gtag('event', 'Survey', {
+        event_category: 'Step 3',
+        event_label: 'Language',
+        value: language,
+      });
     });
-    gtag('event', 'Frameworks', {
-      event_category: this.survey.frameworks.join(', '),
+    this.survey.frameworks.forEach((framework) => {
+      gtag('event', 'Survey', {
+        event_category: 'Step 3',
+        event_label: 'Framework',
+        value: framework,
+      });
     });
-    gtag('event', 'DBs', {
-      event_category: this.survey.dbs.join(', '),
+    this.survey.dbs.forEach((db) => {
+      gtag('event', 'Survey', {
+        event_category: 'Step 3',
+        event_label: 'DB',
+        value: db,
+      });
     });
-    gtag('event', 'JS Library name', {
-      event_category: this.survey.jsLibraries.join(', '),
+    this.survey.jsLibraries.forEach((jsLibrary) => {
+      gtag('event', 'Survey', {
+        event_category: 'Step 3',
+        event_label: 'JS Library name',
+        value: jsLibrary,
+      });
     });
-
     this.huha.getTask('Survey').complete();
   },
 };

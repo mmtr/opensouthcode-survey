@@ -194,14 +194,14 @@ export default {
     survey: {
       handler() {
         this.huha.getTask('Survey').addInteraction();
-        this.huha.getTask('Step3').addInteraction();
+        this.huha.getTask('Step 3').addInteraction();
         this.error = false;
       },
       deep: true,
     },
     error() {
       this.huha.getTask('Survey').addError();
-      this.huha.getTask('Step3').addError();
+      this.huha.getTask('Step 3').addError();
     },
   },
 
@@ -241,10 +241,10 @@ export default {
   methods: {
     next() {
       this.huha.getTask('Survey').addInteraction();
-      this.huha.getTask('Step3').addInteraction();
+      this.huha.getTask('Step 3').addInteraction();
       if (this.valid) {
         this.error = false;
-        this.huha.getTask('Step3').complete();
+        this.huha.getTask('Step 3').complete();
         this.$emit('next-step');
       } else {
         this.error = true;
@@ -253,7 +253,7 @@ export default {
   },
 
   created() {
-    this.huha.createTask('Step3');
+    this.huha.createTask('Step 3');
   },
 };
 </script>
