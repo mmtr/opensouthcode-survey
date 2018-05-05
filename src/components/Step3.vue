@@ -8,7 +8,7 @@
       :back="true"
       :send="true"
       :error="error"
-      @prev-step="$emit('prev-step')"
+      @prev-step="prev"
       @next-step="next">
   </Step>
 </template>
@@ -71,7 +71,7 @@ const frameworks = [
     display: 'Angular',
   }, {
     value: 'react',
-    display: 'Ract',
+    display: 'React',
   }, {
     value: 'netcore',
     display: '.NET Core',
@@ -193,15 +193,17 @@ export default {
   watch: {
     survey: {
       handler() {
-        this.huha.getTask('Survey').addInteraction();
+        this.huha.getTask('Opensouth Survey').addInteraction();
         this.huha.getTask('Step 3').addInteraction();
         this.error = false;
       },
       deep: true,
     },
     error() {
-      this.huha.getTask('Survey').addError();
-      this.huha.getTask('Step 3').addError();
+      if (this.error) {
+        this.huha.getTask('Opensouth Survey').addError();
+        this.huha.getTask('Step 3').addError();
+      }
     },
   },
 
@@ -240,7 +242,7 @@ export default {
 
   methods: {
     next() {
-      this.huha.getTask('Survey').addInteraction();
+      this.huha.getTask('Opensouth Survey').addInteraction();
       this.huha.getTask('Step 3').addInteraction();
       if (this.valid) {
         this.error = false;
@@ -249,6 +251,13 @@ export default {
       } else {
         this.error = true;
       }
+    },
+
+    prev() {
+      this.huha.getTask('Opensouth Survey').addInteraction();
+      this.huha.getTask('Step 3').addInteraction();
+      this.huha.getTask('Step 3').abandon();
+      this.$emit('prev-step');
     },
   },
 

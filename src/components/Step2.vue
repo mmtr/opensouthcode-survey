@@ -8,7 +8,7 @@
       :back="true"
       :error="error"
       @skip="skip"
-      @prev-step="$emit('prev-step')"
+      @prev-step="prev"
       @next-step="next">
   </Step>
 </template>
@@ -142,15 +142,17 @@ export default {
   watch: {
     survey: {
       handler() {
-        this.huha.getTask('Survey').addInteraction();
+        this.huha.getTask('Opensouth Survey').addInteraction();
         this.huha.getTask('Step 2').addInteraction();
         this.error = false;
       },
       deep: true,
     },
     error() {
-      this.huha.getTask('Survey').addError();
-      this.huha.getTask('Step 2').addError();
+      if (this.error) {
+        this.huha.getTask('Opensouth Survey').addError();
+        this.huha.getTask('Step 2').addError();
+      }
     },
   },
 
@@ -174,7 +176,7 @@ export default {
           values: studies,
         }, {
           name: 'salary',
-          label: 'Rango salariar',
+          label: 'Rango salarial',
           type: 'radio',
           values: salaries,
         },
@@ -189,7 +191,7 @@ export default {
 
   methods: {
     next() {
-      this.huha.getTask('Survey').addInteraction();
+      this.huha.getTask('Opensouth Survey').addInteraction();
       this.huha.getTask('Step 2').addInteraction();
       if (this.valid) {
         this.error = false;
@@ -201,8 +203,17 @@ export default {
     },
 
     skip() {
+      this.huha.getTask('Opensouth Survey').addInteraction();
+      this.huha.getTask('Step 2').addInteraction();
       this.huha.getTask('Step 2').abandon();
       this.$emit('next-step');
+    },
+
+    prev() {
+      this.huha.getTask('Opensouth Survey').addInteraction();
+      this.huha.getTask('Step 2').addInteraction();
+      this.huha.getTask('Step 2').abandon();
+      this.$emit('prev-step');
     },
   },
 

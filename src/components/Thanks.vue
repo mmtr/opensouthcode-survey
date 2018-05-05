@@ -26,70 +26,70 @@ export default {
   },
 
   created() {
-    gtag('event', 'Survey', {
-      event_category: 'Step 1',
-      event_label: 'Age',
-      value: this.survey.age,
+    gtag('event', 'Edad', {
+      event_category: 'Sobre ti',
+      event_label: this.survey.age,
+      value: 1,
     });
-    gtag('event', 'Survey', {
-      event_category: 'Step 1',
-      event_label: 'Gender',
-      value: this.survey.gender,
+    gtag('event', 'Género', {
+      event_category: 'Sobre ti',
+      event_label: this.survey.gender,
+      value: 1,
     });
-    gtag('event', 'Survey', {
-      event_category: 'Step 1',
-      event_label: 'City',
-      value: this.survey.city,
+    gtag('event', 'Ciudad', {
+      event_category: 'Sobre ti',
+      event_label: this.survey.city,
+      value: 1,
     });
-    gtag('event', 'Survey', {
-      event_category: 'Step 2',
-      event_label: 'Position',
-      value: this.survey.position,
+    gtag('event', 'Rol', {
+      event_category: 'Profesión',
+      event_label: this.survey.position,
+      value: 1,
     });
-    gtag('event', 'Survey', {
-      event_category: 'Step 2',
-      event_label: 'Experience',
-      value: this.survey.experience,
+    gtag('event', 'Años en la profesión', {
+      event_category: 'Profesión',
+      event_label: this.survey.experience,
+      value: 1,
     });
-    gtag('event', 'Survey', {
-      event_category: 'Step 2',
-      event_label: 'Studies',
-      value: this.survey.studies,
+    gtag('event', 'Nivel de estudios', {
+      event_category: 'Profesión',
+      event_label: this.survey.studies,
+      value: 1,
     });
-    gtag('event', 'Survey', {
-      event_category: 'Step 2',
-      event_label: 'Salary',
-      value: this.survey.salary,
+    gtag('event', 'Rango salarial', {
+      event_category: 'Profesión',
+      event_label: this.survey.salary,
+      value: 1,
     });
     this.survey.languages.forEach((language) => {
-      gtag('event', 'Survey', {
-        event_category: 'Step 3',
-        event_label: 'Language',
-        value: language,
+      gtag('event', 'Lenguajes de programación, scripting y marcado', {
+        event_category: 'Intereses',
+        event_label: language,
+        value: 1,
       });
     });
     this.survey.frameworks.forEach((framework) => {
-      gtag('event', 'Survey', {
-        event_category: 'Step 3',
-        event_label: 'Framework',
-        value: framework,
+      gtag('event', 'Frameworks, librerías y herramientas', {
+        event_category: 'Intereses',
+        event_label: framework,
+        value: 1,
       });
     });
     this.survey.dbs.forEach((db) => {
-      gtag('event', 'Survey', {
-        event_category: 'Step 3',
-        event_label: 'DB',
-        value: db,
+      gtag('event', 'Bases de datos', {
+        event_category: 'Intereses',
+        event_label: db,
+        value: 1,
       });
     });
     this.survey.jsLibraries.forEach((jsLibrary) => {
-      gtag('event', 'Survey', {
-        event_category: 'Step 3',
-        event_label: 'JS Library name',
-        value: jsLibrary,
+      gtag('event', 'Nombre favorito para una posible librería JS', {
+        event_category: 'Intereses',
+        event_label: jsLibrary,
+        value: 1,
       });
     });
-    this.huha.getTask('Survey').complete();
+    this.huha.getTask('Opensouth Survey').complete();
   },
 };
 </script>

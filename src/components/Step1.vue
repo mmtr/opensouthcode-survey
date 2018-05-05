@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import Step from './Step.vue';
 
 const ages = [
@@ -61,21 +62,37 @@ export default {
   data() {
     return {
       error: false,
+      previousCity: null,
     };
   },
 
   watch: {
     survey: {
       handler() {
-        this.huha.getTask('Survey').addInteraction();
-        this.huha.getTask('Step 1').addInteraction();
+        const newCity = this.survey.city;
+        const oldCity = this.previousCity;
+
+        if (newCity) {
+          this.previousCity = newCity;
+        }
+
+        const cityHasChanged = newCity !== oldCity;
+
+        console.log(cityHasChanged, newCity, oldCity);
+
+        if (!cityHasChanged) {
+          this.huha.getTask('Opensouth Survey').addInteraction();
+          this.huha.getTask('Step 1').addInteraction();
+        }
         this.error = false;
       },
       deep: true,
     },
     error() {
-      this.huha.getTask('Survey').addError();
-      this.huha.getTask('Step 1').addError();
+      if (this.error) {
+        this.huha.getTask('Opensouth Survey').addError();
+        this.huha.getTask('Step 1').addError();
+      }
     },
   },
 
@@ -107,7 +124,7 @@ export default {
 
   methods: {
     next() {
-      this.huha.getTask('Survey').addInteraction();
+      this.huha.getTask('Opensouth Survey').addInteraction();
       this.huha.getTask('Step 1').addInteraction();
       if (this.valid) {
         this.error = false;
@@ -120,8 +137,17 @@ export default {
   },
 
   created() {
-    this.huha.createTask('Survey');
+    if (!this.huha.getTask('Opensouth Survey')) {
+      this.huha.createTask('Opensouth Survey');
+    }
     this.huha.createTask('Step 1');
+  },
+
+  mounted() {
+    document.querySelector('#city').addEventListener('focus', () => {
+      this.huha.getTask('Opensouth Survey').addInteraction();
+      this.huha.getTask('Step 1').addInteraction();
+    });
   },
 };
 </script>
