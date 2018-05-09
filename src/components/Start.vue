@@ -12,6 +12,12 @@
     </button>
 
     <div class="start__disclaimer">
+      <p><small>
+        Estos datos serán usados únicamente para el propósito de la charla
+        <a href="https://www.opensouthcode.org/conferences/opensouthcode2018/program/proposals/105" target="_blank">
+          Analizando la UX con Javascript</a> que tendrá lugar el viernes 1 de junio a las 18:00 en La Térmica.
+      </small></p>
+
       <p><small>Esta no esa otra suvery de S*** O***, cualquier parecido con la realidad
         es pura coincidencia.</small></p>
 

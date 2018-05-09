@@ -6,7 +6,7 @@
 
     <strong>Ayúdanos a difundir</strong>
     <div class="thanks__share">
-      <a href="https://twitter.com/intent/tweet?text=httpsn://mmtr.github.io/opensouthcode-survey"
+      <a href="https://twitter.com/intent/tweet?text=He+participado+en+la+survey+de+%40Opensouthcode+https%3A%2F%2Fmmtr.github.io%2Fopensouthcode-survey+y+estoy+deseando+conocer+los+resultados+el+d%C3%ADa+1+de+Junio+a+las+18h+%23UXconJS"
          target="_tab"
          class="thanks__share__twitter">
         <img src="../assets/twitter.png" class="img-fluid">
