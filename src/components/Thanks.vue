@@ -2,7 +2,7 @@
   <div class="thanks">
     <h2 class="display-2">¡Gracias!</h2>
     <p>Si tienes curiosidad por conocer "los resultados" de esta encuesta, no te pierdas nuestra
-    charla el 1 de junio a las 18h, en la Térmica #opensotuhcode</p>
+    charla el 1 de junio a las 18h, en la Térmica #opensouthcode</p>
 
     <strong>Ayúdanos a difundir</strong>
     <div class="thanks__share">
