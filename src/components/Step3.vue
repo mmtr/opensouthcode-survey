@@ -151,7 +151,7 @@ const jsLibraries = [
     display: 'plsdontgoJS',
   }, {
     value: 'extasiJS',
-    display: 'SQL extasiJS',
+    display: 'extasiJS',
   }, {
     value: 'diabloJS',
     display: 'diabloJS',
